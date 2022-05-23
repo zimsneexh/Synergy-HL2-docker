@@ -1,0 +1,11 @@
+version: '3'
+services:
+  synergy:
+    image: debian
+    build: ./synergy
+    container_name: synergy-hl2
+    restart: never
+    volumes:
+      - "./servers:/servers/"
+    ports:
+      - "27015:27015"
