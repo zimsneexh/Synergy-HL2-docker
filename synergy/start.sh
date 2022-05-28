@@ -19,7 +19,7 @@ runServer () {
 	ps aux
 
 	echo "Launching srcds.exe"
-	DISPLAY=:1 wine start /wait srcds.exe -console -game synergy -ip $ip -port 27015 +map d1_trainstation_01 -insecure +hostname "$SERVER_NAME" +sv_password "$SERVER_PASSWORD" +maxplayers 2
+	DISPLAY=:1 wine start /wait srcds.exe -console -game synergy -port 27015 +map d1_trainstation_01 -insecure +hostname "$SERVER_NAME" +sv_password "$SERVER_PASSWORD" +maxplayers 2
 
 	echo "srcds.exe exited!"
 }
