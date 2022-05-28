@@ -3,9 +3,19 @@ services:
   synergy:
     image: debian
     build: ./synergy
-    container_name: synergy-hl2
-    restart: never
+    container_name: synergyhl2
+    restart: always
+    environment:
+      - STEAM_USER_NAME
+      - STEAM_PASSWORD
+      - STEAM_GUARD
+      - SERVER_NAME
+      - SERVER_PASSWORD
+      - VNC_PASSWORD
     volumes:
-      - "./servers:/servers/"
+      - "./servers:/root/Steam/"
     ports:
       - "27015:27015"
+      - '27015:27015/udp'
+      - '27016:27016/udp'
+      - "5900:5900"
