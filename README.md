@@ -22,10 +22,10 @@ To run the container, simply specifiy all required options as follows:
 SERVER_NAME, SERVER_PASSWORD and VNC_PASSWORD will be stored in a file called optionfile.sh inside the container
 
 ## Update
-Run `docker-compose down` to destroy the current containe, after that rerun the first run command. Steam will update the game files if required.
+Run `docker-compose down` to destroy the current container and after that rerun the ['First run'](## First run) command. Steam will update the game files if necassary.
 
 ## VNC access
 An x11vnc server is running for the virtual x11 framebuffer displaying the Servers console. It can be accessed using any VNC viewer on port 5900
 
 ## Missing a feature?
-Pull requests and issues are welcome.
+This docker container only supports the Synergy options I personally need. Pull requests and issues are welcome.
