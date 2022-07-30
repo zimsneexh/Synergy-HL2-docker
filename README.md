@@ -22,7 +22,7 @@ To run the container, simply specifiy all required options as follows:
 SERVER_NAME, SERVER_PASSWORD and VNC_PASSWORD will be stored in a file called optionfile.sh inside the container
 
 ## Update
-Run `docker-compose down` to destroy the current container and after that rerun the [First run](#first-run) command. Steam will update the game files if necessary.
+Run `docker-compose down` to destroy the current container and rerun the [First run](#first-run) command. Steam will update the game files if necessary.
 
 ## VNC access
 An x11vnc server is running for the virtual x11 framebuffer displaying the Servers console. It can be accessed using any VNC viewer on port 5900
