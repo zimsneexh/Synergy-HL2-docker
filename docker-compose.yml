@@ -11,6 +11,7 @@ services:
       - STEAM_GUARD
       - SERVER_NAME
       - SERVER_PASSWORD
+      - SERVER_SLOTS
       - VNC_PASSWORD
     volumes:
       - "./servers:/root/Steam/"

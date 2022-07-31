@@ -19,7 +19,7 @@ runServer () {
 	ps aux
 
 	echo "Launching srcds.exe"
-	DISPLAY=:1 wine start /wait srcds.exe -console -game synergy -port 27015 +map d1_trainstation_01 -insecure +hostname "$SERVER_NAME" +sv_password "$SERVER_PASSWORD" +maxplayers 2
+	DISPLAY=:1 wine start /wait srcds.exe -console -game synergy -port 27015 +map d1_trainstation_01 -insecure +hostname "$SERVER_NAME" +sv_password "$SERVER_PASSWORD" +maxplayers $SERVER_SLOTS
 
 	echo "srcds.exe exited!"
 }
@@ -31,20 +31,32 @@ if test -f "/installed"; then
 	echo "Reading option file.."
 	source /optionfile.sh
 
+	echo "Server name: $SERVER_NAME"
+	echo "Server slots: $SERVER_SLOTS"
+	echo "Server password: $SERVER_PASSWORD"
+	echo "Vnc password: $VNC_PASSWORD"
+
 	echo "Running the server!"
 	runServer
 else
 	echo " ----- SYNERGY HL2 DOCKER CONTAINER SETUP ----- "
 	echo "Server not installed yet. Installing.."
+
+	# Defaults for server_name and server_slots
+	[[ -z "${SERVER_NAME}" ]] && SERVER_NAME='Synergy HL2 Server Docker' || SERVER_NAME="${SERVER_NAME}"
+	[[ -z "${SERVER_SLOTS}" ]] && SERVER_SLOTS=2 || SERVER_SLOTS="${SERVER_SLOTS}"
+	
 	echo "Server name: $SERVER_NAME"
+	echo "Server slots: $SERVER_SLOTS"
 	echo "Server password: $SERVER_PASSWORD"
 	echo "Vnc password: $VNC_PASSWORD"
 
 	echo "Writing optionfile.."
 	echo "SERVER_NAME=$SERVER_NAME" >> /optionfile.sh
+	echo "SERVER_SLOTS=$SERVER_SLOTS" >> /optionfile.sh
 	echo "SERVER_PASSWORD=$SERVER_PASSWORD" >> /optionfile.sh
 	echo "VNC_PASSWORD=$VNC_PASSWORD" >> /optionfile.sh
-	
+
 	cd /steamcmd/
 	echo "Installing synergy and Half-Life 2 (including Episode 1 and Episode 2)"
 	./steamcmd.sh +login $STEAM_USER_NAME $STEAM_PASSWORD $STEAM_GUARD +@sSteamCmdForcePlatformType windows +app_update 220 +app_update 420  +app_update 380 +app_update 17520 validate +quit

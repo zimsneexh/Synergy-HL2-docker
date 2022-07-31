@@ -10,6 +10,7 @@ The container is configured using the following environment variables passed thr
 - STEAM_PASSWORD
 - STEAM_GUARD (Optional: if enabled)
 - SERVER_NAME
+- SERVER_SLOTS
 - SERVER_PASSWORD
 - VNC_PASSWORD
 
@@ -17,12 +18,15 @@ To download the required Half-Life 2 game files from Steam a Steam account ownin
 
 ## First run
 To run the container, simply specifiy all required options as follows:
-`STEAM_USER_NAME=AAA STEAM_PASSWORD=AAA STEAM=GUARD=AAA SERVER_NAME=AAA SERVER_PASSWORD=AAA VNC_PASSWORD=AAA docker-compose up`
+`STEAM_USER_NAME=steamuser STEAM_PASSWORD=aaa STEAM_GUARD=AAAAA SERVER_NAME=AAA SERVER_SLOTS=2 SERVER_PASSWORD=AAA VNC_PASSWORD=AAA docker-compose up`
 
-SERVER_NAME, SERVER_PASSWORD and VNC_PASSWORD will be stored in a file called optionfile.sh inside the container
+SERVER_NAME, SERVER_SLOTS, SERVER_PASSWORD and VNC_PASSWORD will be stored in a file called optionfile.sh inside the container
 
 ## Update
 Run `docker-compose down` to destroy the current container and rerun the [First run](#first-run) command. Steam will update the game files if necessary.
+
+## Update the container
+Pull the changes from github and run `docker-compose build` to rebuild the container image. 
 
 ## VNC access
 An x11vnc server is running for the virtual x11 framebuffer displaying the Servers console. It can be accessed using any VNC viewer on port 5900
